@@ -1,0 +1,52 @@
+.house-div {
+    border: black solid 1px;
+    margin: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.house-div:hover {
+    font-weight: bold;
+}
+
+.back-red {
+    background-color: #ff6961;
+}
+
+.back-yellow {
+    background-color: #fdfd96;
+}
+
+.back-green {
+    background-color: #77dd77;
+}
+
+.back-blue {
+    background-color: #aec6cf;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.color-changer {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    border: black solid 1px;
+}
+
+.color-changer-container > div {
+    display: inline-block;
+}
+
+.toggle-fade-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.toggle-fade-container > div {
+    display: inline-block;
+}

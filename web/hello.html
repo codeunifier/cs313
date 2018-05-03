@@ -1,1 +1,38 @@
-<h1>wut</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CS 313 Website</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="" src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="house-div back-red">You might belong in Gryffindor, where dwell the brave at heart, their daring, nerve, and chivalry set Gryffindors apart.</div>
+            <div class="house-div back-green">Or perhaps in Slytherin you'll make your real friends, those cunning folk use any means to achieve their ends.</div>
+            <div class="house-div back-yellow">You might belong in Hufflepuff, where they are just and loyal, those patient Hufflepuffs are true and unafraid of toil.</div>
+            <div class="house-div back-blue">Or yet in wise old Ravenclaw, if you've a ready mind, where those of wite and learning will always find their kind.</div>
+        </div>
+        <div class="color-changer-container">
+            <div id="jsColorChanger" class="color-changer">
+                <span>Change my color with Javascript!</span>
+            </div>
+            <button onclick="onJSChangeColorClick()">Change color!</button>
+            <input id="jsColorInput" type="text" placeholder="Enter color value">
+        </div>
+        <div class="color-changer-container">
+            <div id="jqColorChanger" class="color-changer">
+                <span>Change my color with JQuery!</span>
+            </div>
+            <button onclick="onJQChangeColorClick()">Change color!</button>
+            <input id="jqColorInput" type="text" placeholder="Enter color value">
+        </div>
+        <div class="toggle-fade-container">
+            <button id="fadeToggle" onclick="onFadeToggleClick()">Fade the div!</button>
+            <div class="toggle-fade">
+                <span>Fade me!</span>
+            </div>
+        </div>
+        <button onclick="onButtonClick()">Click me!</button>
+    </body>
+</html>
