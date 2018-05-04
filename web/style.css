@@ -47,3 +47,32 @@ body {
     border: solid black 1px;
     width: 33%;
 }
+
+#collegeMotto {
+    padding-top: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+}
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#googleImage {
+    filter: grayscale(100%);
+}
+
+#clickButtonContainer {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
