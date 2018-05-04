@@ -61,6 +61,10 @@ body {
     font-size: 17px;
 }
 
+.container p {
+    line-height: 30px;
+}
+
 .image {
     display: block;
     margin-left: auto;
@@ -72,7 +76,5 @@ body {
 }
 
 #clickButtonContainer {
-    width: 350px;
-    margin-left: auto;
-    margin-right: auto;
+    grid-column: 5;
 }

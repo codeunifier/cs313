@@ -2,12 +2,24 @@
 <html>
     <head>
         <title>CS 313 - Assignments</title> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"> 
+        <script type="text/javascript" src="script.js"></script> 
+        <script type="text/javascript">
+            function windowLoads() {
+                setInitialClickCount();
+            }
+            window.onload = windowLoads();
+        </script>
     </head>
     <body>
         <div class="nav-toolbar font-18">
-            <a id="link1" href="landing.html" class="nav-toolbar-item">Home</a>
-            <a id="link1" href="assignments.html" class="nav-toolbar-item">Assignments</a>
+            <a href="landing.html" class="nav-toolbar-item">Home</a>
+            <a href="assignments.html" class="nav-toolbar-item">Assignments</a>
+            <div id="clickButtonContainer" class="nav-toolbar-item">
+                <button onclick="addClick()">Click me!</button>
+                Total clicks: <span id="clickNum"></span>
+            </div>
         </div>
         <img id="collegeMotto" src="images/arbeit.JPG" class="image">
         <table id="assignmentsTable">

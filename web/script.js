@@ -8,3 +8,13 @@ var addClick = function () {
         // alert(msg);
     });
 }
+
+var setInitialClickCount = function () {
+    $.ajax({
+        type: "GET",
+        url: "click.php",
+        data: {},
+    }).done(function (count) {
+        $("#clickNum").html(count);
+    })
+}
