@@ -1,0 +1,151 @@
+h1 {
+    text-align: center;
+}
+
+form input {
+    margin-bottom: 10px;
+    margin-left: 5px;
+    width: 150px;
+}
+
+.short-input {
+    width: 70px;
+}
+
+#shippingInfo {
+    float: left;
+    margin-right: 50px;
+}
+
+.shopping-cart {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#piTable {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.pi-pic {
+    padding: 10px;
+}
+
+.pi-pic > * {
+    display: inline-block;
+    text-align: center;
+}
+
+.pi-pic img {
+    width: 80%;
+}
+
+.pi-pic span {
+    width: 80%;
+}
+
+.lower-container {
+    width: 100%;
+}
+
+.lower-container * {
+    display: block;
+}
+
+.lower-container button {
+    width: 66%;
+}
+
+.button-container {
+    width: 99%;
+    margin-top: 25px;
+    height: 40px;
+    background-color: #41B3A3;
+    text-align: center;
+    bottom: 15px;
+}
+
+.button-container form {
+    height: 100%;
+}
+
+.button-container input {
+    height: 100%;
+    font-size: 18px;
+}
+
+.float-left {
+    float: left;
+}
+
+#cartTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cartTable tr {
+    background-color: #d1adb8;
+}
+
+#cartTable th {
+    border: 1px black solid;
+    height: 50px;
+    font-size: 15px;
+}
+
+#cartTable td {
+    text-align: center;
+    border: 1px black solid;
+}
+
+#cartTable td * {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner-message {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 80px;
+}
+
+.checkout {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkout form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.confirmation {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.red-text {
+    color: red;
+}
+
+.block {
+    display: block;
+}
+
+.confirm-container {
+    margin-top: 300px;
+}
+
+.black-border {
+    border: solid 1px black;
+}
+
+.confirmation > div {
+    margin-bottom: 20px;
+}
