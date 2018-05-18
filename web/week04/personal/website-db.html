@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <!-- 
+        Nice website to visualize json output:
+        http://chris.photobooks.com/json/default.htm
+    -->
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="p04-styles.css">
+        <script type="text/javascript" src="javascript.js"></script>
+        <script>
+            window.onload = function () {
+                apiTest();
+                loadSQLCode();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="nav-toolbar font-18">
+            <a href="../../landing.html" class="nav-toolbar-item">Home</a>
+            <a href="../../assignments.html" class="nav-toolbar-item">Assignments</a>
+        </div>
+        <h1>Database Test for Infinite Springs</h1>
+        <div id="databaseDemo">
+            <div class="explanation">
+                The following diagram explains the design of the database for the Magic: The Gathering website.
+            </div>
+            <div id="dbDesign">
+                <img src="db-design.JPG">
+            </div>
+            <div class="explanation">
+                As shown above, the database will feature several tables with a few lookup tables. One of 
+                the most important tables is the <span class="text-color-blue">multiverse_lookup</span>
+                table. This table will house the multiverse id for cards added by users either through 
+                "saving" the card to their account or by adding the card to a deck. This multiverse id comes 
+                from the API endpoints offered by Wizards of the Coast, the creators of Magic: The Gathering.
+            </div>
+            <div class="explanation">
+                These API Endpoints are used in order to query the database housing the list of cards in 
+                the realm of the game. The following is an example of the response JSON of
+                a query for the card pictured on the right. A plethora of information is returned from 
+                the GET request, including all details given on the card as well as various versions of 
+                the card in different languages.
+            </div>
+            <div id="cardDemo">
+                <code id="jsonCode"></code>
+                <div id="cardImage"></div>
+            </div>
+            <div class="explanation">
+                In order to create the database structured above, the following sql code will be implemented.
+            </div>
+            <pre id="sqlCode">
+                
+            </pre>
+            <div class="explanation">
+                User passwords will be hashed server-side using the 
+                <a href="https://secure.php.net/manual/en/function.hash.php">sha256</a> method. This method uses 
+                several different methods of cryptography to mess with plaintext to make it extremely well hashed.
+                Try out the example below.
+            </div>
+            <div id="hashContainer">
+                <button id="hashButton" onclick="createUserHash()">Create Hash</button>
+                <input id="userInput" type="text" placeholder="Text to be hashed">
+                <div id="hashed"></div>
+            </div>
+        </div>
+        <footer></footer>
+    </body>
+</html>
