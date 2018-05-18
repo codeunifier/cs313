@@ -1,0 +1,44 @@
+/*
+* #31aa31 - light green
+* #ffffff - white
+* #f0f0f0 - light grey
+* #b8b8b8 - grey
+* #707070 - dark grey
+*/
+
+header {
+    background-color: #31aa31;
+    height: 120px;
+}
+
+.header-contents {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.header-text span {
+    font-size: 40px;
+}
+
+.header-left-container {
+    height: 100%;
+    line-height: 120px;
+    vertical-align: middle;
+}
+
+.header-left-container > * {
+    display: inline-block;
+}
+
+.header-image {
+    height: 120px;
+    width: 120px;
+    float: left;
+}
+
+img {
+    width: 80%;
+    height: 80%;
+    vertical-align: middle;
+}
