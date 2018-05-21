@@ -4,6 +4,7 @@
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"> 
+        <link rel="stylesheet" href="login-styles.css">
         <script type="text/javascript" src="mtg-endpoints.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
         <script type="text/javascript">
@@ -30,13 +31,12 @@
                 </div>
             </div>
         </header>
-        <div class="body-container">
-            <!-- <div id="cardDisplayContainer">
-                <div id="card1" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433276&type=card"></div>
-                <div id="card2" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433289&type=card"></div>
-                <div id="card3" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433279&type=card"></div>
-                <div id="card4" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433277&type=card"></div>
-            </div> -->
+        <div id="loginInfoContainer">
+            <form method="post" action="login.php">
+                <input type="text" name="username" value="" placeholder="Username">
+                <input type="text" name="password" value="" placeholder="Password">
+                <input type="submit" value="Log In">
+            </form>
         </div>
         <footer></footer>
     </body>
