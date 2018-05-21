@@ -6,7 +6,10 @@ $password = "0091f609f2f2fb732f1ee4dded36eb5fb389ea9bf4304b10114a5c1a98cecb8f"; 
 $db_name = "dem9rmc5rsvog"; //mysql database name
 
 $db_conn_string = "host=" . $host . " dbname=" . $db_name . " user=" . $username . " password=" . $password;
-$db_connection = pg_connect($db_conn_string);
+// $db_connection = pg_connect($db_conn_string);
+
+$db_connection = pg_connect(getenv("DATABASE_URL"));
+echo($db_connection);
 
 
 //protection from sql injection
