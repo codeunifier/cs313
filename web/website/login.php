@@ -12,7 +12,7 @@ $user_password = stripslashes($user_password);
 echo("Slashes stripped: " . $user_username . ", " . $user_password . "<br>");
 
 
-$result = pg_query($db_conn, "SELECT user_id, username FROM users");
+$result = pg_query($db_conn, "SELECT user_id, username, date_created FROM users");
 
 echo("Result of database query:");
 echo ($result);
@@ -22,10 +22,20 @@ if (!$result) {
     exit;
 }
 
+echo("<table id='resultTable'><tr><th>user_id</th><th>username</th></tr>");
 while ($row = pg_fetch_row($result)) {
-    echo ("<br><br>");
-    echo ("User Number: " . $row[0]);
-    echo ("Username: " . $row[1]);
-    echo ("<br><br>");
+    echo ("<tr>");
+        echo ("<td>");
+            echo ($row[0]);
+        echo ("</td>");
+        echo ("<td>");
+            echo ($row[1]);
+        echo ("</td>");
+        echo ("<td>");
+            echo ($row[2]);
+        echo ("</td>");
+    echo("</tr>");
 }
+echo("</table>");
 ?>
+
