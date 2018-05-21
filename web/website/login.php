@@ -14,6 +14,9 @@ echo("Slashes stripped: " . $user_username . ", " . $user_password . "<br>");
 
 $result = pg_query($db_conn, "SELECT user_id, username FROM users");
 
+echo("Result of database query:");
+echo ($result);
+
 if (!$result) {
     echo ("Error querying rows from users table");
     exit;
