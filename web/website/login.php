@@ -2,25 +2,22 @@
 //make the database connection with the database environment variable
 $db_conn = pg_connect(getenv("DATABASE_URL"));
 
-
 $user_username = $_POST["username"];
 $user_password = $_POST["password"];
 
-echo("Data received: " . $user_username . ", " . $user_password . "<br>");
 $user_username = stripslashes($user_username);
 $user_password = stripslashes($user_password);
-echo("Slashes stripped: " . $user_username . ", " . $user_password . "<br>");
-
 
 $result = pg_query($db_conn, "SELECT user_id, username, date_created FROM users");
-
-echo("Result of database query:");
-echo ($result);
 
 if (!$result) {
     echo ("Error querying rows from users table");
     exit;
 }
+
+echo("Datbase query successful.<br>");
+echo("Returned " . pg_num_rows($result) . " row(s).<br>");
+echo("Log in successful.<br>");
 
 echo("
 <head><style>
