@@ -22,7 +22,20 @@ if (!$result) {
     exit;
 }
 
-echo("<table id='resultTable'><tr><th>user_id</th><th>username</th></tr>");
+echo("
+<head><style>
+    #resultTable {
+        border-collapse: collapse;
+        margin-top: 50px;
+    }
+
+    #resultTable tr * {
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style></head>");
+
+echo("<table id='resultTable'><tr><th>user_id</th><th>username</th><th>date_created</th></tr>");
 while ($row = pg_fetch_row($result)) {
     echo ("<tr>");
         echo ("<td>");
