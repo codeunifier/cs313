@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- https://andrewgioia.github.io/Mana/icons.html -->
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"> 
         <script type="text/javascript" src="mtg-endpoints.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
         <script type="text/javascript">
-        
+            searchCards("name=sea gate oracle&set=C17").done(function(results) {
+                console.log(results);
+            });
         </script>
     </head>
     <body>
         <header>
             <div class="header-contents">
                 <div class="header-left-container">
-                    <div class="header-image">
-                        <img src="images/spring.JPG">
-                    </div>
-                    <div class="header-text">
-                        <span>Infinite Springs</span>
-                    </div>
+                    <a href="website.html">
+                        <div class="header-image">
+                            <img src="images/spring.JPG">
+                        </div>
+                        <div class="header-text">
+                            <span>Infinite Springs</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="nav-bar-container">
                     <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="cards.php">Saved Cards</a></li>
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="saved-cards.php">Saved Cards</a></li>
                         <li><a href="decks.php">Decks</a></li>
                     </ul>
                 </div>
             </div>
         </header>
         <div class="body-container">
-            <!-- <div id="cardDisplayContainer">
+            <div class="title-text"><span>New 2017 Commanders!</span></div>
+            <div id="cardDisplayContainer">
                 <div id="card1" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433276&type=card"></div>
                 <div id="card2" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433289&type=card"></div>
                 <div id="card3" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433279&type=card"></div>
                 <div id="card4" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433277&type=card"></div>
-            </div> -->
+            </div>
         </div>
         <footer></footer>
     </body>

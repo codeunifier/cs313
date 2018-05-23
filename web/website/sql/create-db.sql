@@ -20,7 +20,9 @@ CREATE TABLE multiverse_lookup (
     multiverse_lookup_id serial PRIMARY KEY NOT NULL,
     multiverse_id int NOT NULL,
     user_id int NOT NULL,
-    deck_id int
+    deck_id int,
+    date_created DATE NOT NULL,
+    date_deleted DATE
 );
 
 --create decks table
@@ -31,13 +33,6 @@ CREATE TABLE decks (
     format_id int NOT NULL,
     date_created DATE NOT NULL,
     date_deleted DATE
-);
-
---create formats table
-CREATE TABLE formats (
-    format_id serial PRIMARY KEY NOT NULL,
-    format_name VARCHAR(30) NOT NULL,
-    rules_url TEXT NOT NULL
 );
 
 --create colors table
@@ -56,8 +51,6 @@ CREATE TABLE deck_color_lookup (
 --add foreign key constraints
 ALTER TABLE decks
 ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
-ALTER TABLE decks
-ADD FOREIGN KEY (format_id) REFERENCES formats(format_id);
 ALTER TABLE multiverse_lookup
 ADD FOREIGN KEY (deck_id) REFERENCES decks(deck_id);
 ALTER TABLE multiverse_lookup
@@ -66,4 +59,50 @@ ALTER TABLE deck_color_lookup
 ADD FOREIGN KEY (deck_id) REFERENCES decks(deck_id);
 ALTER TABLE deck_color_lookup
 ADD FOREIGN KEY (color_id) REFERENCES colors(color_id);
+
+--insert rows into tables unaffected by users
+--colors table
+INSERT INTO colors (color_name)
+VALUES ('Red');
+INSERT INTO colors (color_name)
+VALUES ('Blue');
+INSERT INTO colors (color_name)
+VALUES ('White');
+INSERT INTO colors (color_name)
+VALUES ('Black');
+INSERT INTO colors (color_name)
+VALUES ('Green');
+
+
+--insert test user and test data
+
+--insert testing user into database
+INSERT INTO users (username, password_hash, date_created)
+VALUES ('testing', '', now());
+
+--testing user creates a Commander deck with Inalla as the Commander
+INSERT INTO decks (deck_name, user_id, format_id, date_created)
+VALUES ('Wizard EDH', 1, 3, now());
+INSERT INTO deck_color_lookup (deck_id, color_id)
+VALUES (1, 1);
+INSERT INTO deck_color_lookup (deck_id, color_id)
+VALUES (1, 2);
+INSERT INTO deck_color_lookup (deck_id, color_id)
+VALUES (1, 4);
+--Inalla
+INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
+VALUES (433279, 1, 1, now());
+--Jace, Unraveler of Secrets
+INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
+VALUES (409812, 1, 1, now());
+--Kess, Dissident Mage
+INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
+VALUES (433280, 1, 1, now());
+--Apprentice Necromancer
+INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
+VALUES (433029, 1, 1, now());
+--Sea Gate Oracle
+INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
+VALUES (433024, 1, 1, now());
+
 

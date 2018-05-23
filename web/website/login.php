@@ -1,51 +1,51 @@
 <?php
-//make the database connection with the database environment variable
-$db_conn = pg_connect(getenv("DATABASE_URL"));
-
-$user_username = $_POST["username"];
-$user_password = $_POST["password"];
-
-$user_username = stripslashes($user_username);
-$user_password = stripslashes($user_password);
-
-$result = pg_query($db_conn, "SELECT user_id, username, date_created FROM users");
-
-if (!$result) {
-    echo ("Error querying rows from users table");
-    exit;
-}
-
-echo("Datbase query successful.<br>");
-echo("Returned " . pg_num_rows($result) . " row(s).<br>");
-echo("Log in successful.<br>");
-
-echo("
-<head><style>
-    #resultTable {
-        border-collapse: collapse;
-        margin-top: 50px;
+    if (isset($_SESSION["loggedIn"])) {
+        echo("Already logged in as " . $_SESSION["username"]);
+        echo("<br><br>Click <a href='website.html'>here</a> to return.");
+        exit;
     }
-
-    #resultTable tr * {
-        border: 1px solid black;
-        padding: 5px;
-    }
-</style></head>");
-
-echo("<table id='resultTable'><tr><th>user_id</th><th>username</th><th>date_created</th></tr>");
-while ($row = pg_fetch_row($result)) {
-    echo ("<tr>");
-        echo ("<td>");
-            echo ($row[0]);
-        echo ("</td>");
-        echo ("<td>");
-            echo ($row[1]);
-        echo ("</td>");
-        echo ("<td>");
-            echo ($row[2]);
-        echo ("</td>");
-    echo("</tr>");
-}
-echo("</table>");
 ?>
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login - Infinite Springs</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style.css"> 
+        <link rel="stylesheet" href="login-styles.css">
+        <script type="text/javascript" src="mtg-endpoints.js"></script>
+        <script type="text/javascript" src="scripts.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="header-contents">
+                <div class="header-left-container">
+                    <a href="website.html">
+                        <div class="header-image">
+                            <img src="images/spring.JPG">
+                        </div>
+                        <div class="header-text">
+                            <span>Infinite Springs</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="nav-bar-container">
+                    <ul>
+                        <li><a href="login.php">Login</a></li>
+                        <li><a href="saved-cards.php">Saved Cards</a></li>
+                        <li><a href="decks.php">Decks</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div id="loginInfoContainer">
+            <div>No credentials are actually needed here. Any input can be entered for now.</div>
+            <br>
+            <form method="post" action="login-check.php">
+                <input type="text" name="username" value="" placeholder="Username">
+                <input type="text" name="password" value="" placeholder="Password">
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+        <footer></footer>
+    </body>
+</html>
