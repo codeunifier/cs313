@@ -1,0 +1,47 @@
+table {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table td {
+    padding: 10px;
+}
+
+table td img {
+    height: auto;
+}
+
+.card-name {
+    width: 150px;
+}
+
+.card-cost {
+    width: 120px;
+}
+
+.cost-container {
+    float: right;
+}
+
+.card-link {
+    cursor: pointer;
+}
+
+.img-small {
+    width: 150px;
+    transition-duration: .3s;
+}
+
+.img-big {
+    width: 300px;
+    transition-duration: .3s;
+}
+
+.text-hidden {
+    display: none;
+}
+
+.text-visible {
+    display: block;
+}

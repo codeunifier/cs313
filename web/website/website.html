@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- https://andrewgioia.github.io/Mana/icons.html -->
+        <!-- 
+
+            Icons and images for mana symbols are © Wizards of the Coast
+            "Mana" font created by Andrew Gioia
+            
+            https://andrewgioia.github.io/Mana/icons.html 
+
+        -->
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="style.css"> 
         <script type="text/javascript" src="mtg-endpoints.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
         <script type="text/javascript">
-            searchCards("name=sea gate oracle&set=C17").done(function(results) {
+            var mtg = new mtgApi();
+
+            mtg.searchCards("name=sea gate oracle&set=C17").done(function(results) {
                 console.log(results);
             });
         </script>
@@ -16,7 +25,7 @@
     <body>
         <header>
             <div class="header-contents">
-                <div class="header-left-container">
+                <div class="logo-container">
                     <a href="website.html">
                         <div class="header-image">
                             <img src="images/spring.JPG">
@@ -28,9 +37,9 @@
                 </div>
                 <div class="nav-bar-container">
                     <ul>
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="saved-cards.php">Saved Cards</a></li>
-                        <li><a href="decks.php">Decks</a></li>
+                        <li><a href="login/login.php">Login</a></li>
+                        <li><a href="saved-cards/saved-cards.php">Cards</a></li>
+                        <li><a href="decks/decks.php">Decks</a></li>
                     </ul>
                 </div>
             </div>

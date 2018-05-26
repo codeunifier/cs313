@@ -36,15 +36,24 @@ $user_password = stripslashes($user_password);
 
 //query database for user information
 //TODO: add password matching
-$statement = "SELECT user_id, username, password_hash, date_created FROM users;";
+$statement = "SELECT user_id, username, password_hash, date_created FROM users WHERE username='testing';";
 $data = null;
 if ($response = $db->query($statement)) {
     if ($response->rowCount() > 0) {
+        //this is only for testing - we are only looking for one row
         if ($response->rowCount() == 1) {
             if ($response->columnCount() == 4) {
                 echo("Datbase query successful.<br>");
-                //Only need the one row
+                
+                //Only need the one row for now
                 $data = $response->fetchAll()[0];
+
+                // if ($data['password_hash'] == hash("sha256", $user_password)) {
+                //     echo("Passwords validated<br>");
+                // } else {
+                //     echo("Error - username or password incorrect.<br>");
+                //     exit;
+                // }
             } else {
                 echo("Error in sql query - wrong number of columns returned: " . $response->columnCount() . "<br>");
                 print_r($response->errorInfo());
@@ -93,7 +102,7 @@ $_SESSION["userId"] = $data['user_id'];
         </table>
         <br>
         <div>
-            <span>Click <a href="website.html">here</a> to return.</span>
+            <span>Click <a href="./../website.html">here</a> to return.</span>
         </div>
     </body>
     <footer></footer>

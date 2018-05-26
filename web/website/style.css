@@ -6,9 +6,18 @@
 * #707070 - dark grey
 */
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 header {
+    position: relative;
+    top: 0;
     background-color: #31aa31;
     height: 120px;
+    width: 100%;
 }
 
 .header-contents {
@@ -25,17 +34,17 @@ header {
     font-size: 40px;
 }
 
-.header-left-container {
+.logo-container {
     height: 100%;
     line-height: 120px;
     vertical-align: middle;
 }
 
-.header-left-container div {
+.logo-container div {
     display: inline-block;
 }
 
-.header-left-container a {
+.logo-container a {
     text-decoration: none;
     color: black;
 }
@@ -53,9 +62,12 @@ img {
 }
 
 .body-container {
+    position: relative;
     width: 70%;
+    min-height: 100%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: -50px;
 }
 
 #cardDisplayContainer {
@@ -82,13 +94,21 @@ img {
     display: inline-block;
     background-color: #b8b8b8;
     margin: 10px;
-    height: 80px;
-    width: 120px;
+    height: 60px;
+    width: 100px;
+    border: 2px solid #b8b8b8;
+    border-radius: 6px;
+    transition-duration: .4s;
+    cursor: pointer;
+}
+
+.nav-bar-container li:hover {
+    background-color: #f0f0f0;
 }
 
 .nav-bar-container li a {
     text-decoration: none;
-    line-height: 80px;
+    line-height: 60px;
     text-align: center;
     font-size: 20px;
     display: block;
@@ -104,4 +124,11 @@ img {
 .title-text span {
     font-size: 25px;
     font-weight: bold;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    /* background-color: #31aa31; */
+    height: 50px;
 }

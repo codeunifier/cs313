@@ -27,3 +27,17 @@ function buildCardSearchURL(criteriaToBuild) {
 
     return url;
 }
+
+function convertManaCostToSymbols(manaCost) {
+    //remove brackets
+    manaCost = manaCost.split("}").join("").split("{");
+    manaCost.shift();
+    
+    var html = "";
+
+    for (var i = 0; i < manaCost.length; i++) {
+        html += "<i class=\"ms ms-cost ms-" + manaCost[i].toLowerCase() + "\"></i>";
+    }
+
+    return html;
+}
