@@ -47,7 +47,7 @@ function loadHeader() {
 
     $.ajax({
         type: "GET",
-        url: "/cs313-php/web/website/header.html",
+        url: "/website/header.html",
         data: "",
         success: function (data) { 
             if (data != null) {
