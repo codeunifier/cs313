@@ -6,7 +6,7 @@
         $cookie = json_decode($_COOKIE['infinite-springs'], true);
         echo("Already logged in as " . $cookie["username"] . "<br>");
         echo("<br>Click <a href='logout.php'>here</a> to log out.<br>");
-        echo("<br><br>Click <a href='/cs313-php/web/website/website.html'>here</a> to return.");
+        echo("<br><br>Click <a href='/website/website.html'>here</a> to return.");
         exit;
     }
 ?>
@@ -15,12 +15,12 @@
     <head>
         <title>Login - Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
-        <link rel="stylesheet" href="/cs313-php/web/website/login/login-styles.css">
-        <script type="text/javascript" src="/cs313-php/web/website/login/entropy.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/login/login-scripts.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
+        <link rel="stylesheet" href="/website/style.css"> 
+        <link rel="stylesheet" href="/website/login/login-styles.css">
+        <script type="text/javascript" src="/website/login/entropy.js"></script>
+        <script type="text/javascript" src="/website/login/login-scripts.js"></script>
+        <script type="text/javascript" src="/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/website/scripts.js"></script>
         <script type="text/javascript">
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);
@@ -33,7 +33,7 @@
         </header>
         <div class="body-container">
             <div id="loginInfoContainer">
-                <div id="imageContainer"><img src="/cs313-php/web/website/images/johnny.jpg"></div>
+                <div id="imageContainer"><img src="/website/images/johnny.jpg"></div>
                 <form id="loginForm" method="post" action="login-check.php">
                     <span id="formHeader">Log In</span>
                     <input type="text" name="username" value="" placeholder="Username" class="login-input" required>

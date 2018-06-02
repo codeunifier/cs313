@@ -5,5 +5,5 @@
     unset($_COOKIE['infinite-springs']);
     setcookie('infinite-springs', '', time() - 3600, '/');
 
-    header('Location: /cs313-php/web/website/website.html');
+    header('Location: /website/website.html');
 ?>

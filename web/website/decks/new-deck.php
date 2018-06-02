@@ -3,7 +3,7 @@
 
     //just in case the user somehow gets here without being logged in
     if (!isset($_COOKIE['infinite-springs'])) {
-        header("Location: /cs313-php/web/website/login/login.php");
+        header("Location: /website/login/login.php");
         exit;
     }
 
@@ -37,5 +37,5 @@
         die();
     }
 
-    header("Location: /cs313-php/web/website/decks/decks.php");
+    header("Location: /website/decks/decks.php");
 ?>

@@ -14,12 +14,12 @@
     <head>
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="/cs313-php/web/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
-        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/search/search-scripts.js"></script>
-        <link rel="stylesheet" href="/cs313-php/web/website/search/search-styles.css">
+        <link href="/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/website/style.css"> 
+        <script type="text/javascript" src="/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/website/scripts.js"></script>
+        <script type="text/javascript" src="/website/search/search-scripts.js"></script>
+        <link rel="stylesheet" href="/website/search/search-styles.css">
         <script type="text/javascript">
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);

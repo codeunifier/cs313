@@ -44,7 +44,7 @@
         if (strpos($error, 'Unique violation') !== false) {
             $_SESSION['duplicate'] = $username;
             // echo ($error);
-            header("Location: /cs313-php/web/website/login/new-account.php");
+            header("Location: /website/login/new-account.php");
         }
         die();
     }

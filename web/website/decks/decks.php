@@ -3,7 +3,7 @@
 
     if (!isset($_COOKIE['infinite-springs'])) {
         //need to log in before decks can be viewed
-        header("Location: /cs313-php/web/website/login/login.php");
+        header("Location: /website/login/login.php");
         exit;
     }
 
@@ -52,14 +52,14 @@
         <title>Decks</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-        <link href="/cs313-php/web/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="/cs313-php/web/website/cookie.js"></script>
+        <link href="/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/website/cookie.js"></script>
 
-        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
-        <link rel="stylesheet" href="/cs313-php/web/website/decks/deck-styles.css">
-        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/decks/deck-scripts.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
+        <link rel="stylesheet" href="/website/style.css"> 
+        <link rel="stylesheet" href="/website/decks/deck-styles.css">
+        <script type="text/javascript" src="/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/website/decks/deck-scripts.js"></script>
+        <script type="text/javascript" src="/website/scripts.js"></script>
         <script>
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);

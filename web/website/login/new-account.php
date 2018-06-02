@@ -13,10 +13,10 @@
     <head>
         <title>New Account</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
-        <link rel="stylesheet" href="/cs313-php/web/website/login/login-styles.css">
-        <script type="text/javascript" src="/cs313-php/web/website/login/login-scripts.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
+        <link rel="stylesheet" href="/website/style.css"> 
+        <link rel="stylesheet" href="/website/login/login-styles.css">
+        <script type="text/javascript" src="/website/login/login-scripts.js"></script>
+        <script type="text/javascript" src="/website/scripts.js"></script>
         <script type="text/javascript">
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);

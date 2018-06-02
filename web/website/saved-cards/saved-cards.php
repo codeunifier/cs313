@@ -3,7 +3,7 @@
 
     if (!isset($_COOKIE['infinite-springs'])) {
         //need to log in before cards can be viewed
-        header("Location: /cs313-php/web/website/login/login.php");
+        header("Location: /website/login/login.php");
         exit;
     }
 
@@ -49,12 +49,12 @@
     <head>
         <title>Saved Cards</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="/cs313-php/web/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
-        <link rel="stylesheet" href="/cs313-php/web/website/saved-cards/saved-card-styles.css">
-        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
-        <script type="text/javascript" src="/cs313-php/web/website/saved-cards/saved-cards-scripts.js"></script>
+        <link href="/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/website/style.css"> 
+        <link rel="stylesheet" href="/website/saved-cards/saved-card-styles.css">
+        <script type="text/javascript" src="/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/website/scripts.js"></script>
+        <script type="text/javascript" src="/website/saved-cards/saved-cards-scripts.js"></script>
         <script type="text/javascript">
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);

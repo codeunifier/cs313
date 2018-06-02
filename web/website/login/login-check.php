@@ -50,7 +50,7 @@ try {
                 //86440 = 1 day
                 setcookie('infinite-springs', $cookie, time() + (86440 * 7), "/");
 
-                header("Location: /cs313-php/web/website/website.html");
+                header("Location: /website/website.html");
             } else {
                 echo("Error!: Password not verified");
             }
