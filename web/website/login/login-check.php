@@ -18,92 +18,51 @@ try {
     }  
 
     $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    function clean_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    $user_username = clean_input($_POST["username"]);
+    $user_password = clean_input($_POST["password"]);
+
+    // $user_password = hash("sha256", $user_password);
+
+    // echo ($user_password);
+
+    $statement = "SELECT user_id, password_hash FROM users WHERE username = ? AND date_deleted IS NULL;";
+    $query = $db->prepare($statement);
+
+    if ($query->execute([$user_username])) {
+        if ($query->rowCount() == 1) {
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($user_password, $row["password_hash"])) {
+                //TODO: update the session variable to a cookie
+                // $_SESSION["loggedIn"] = true;
+                // $_SESSION["username"] = $user_username;
+                // $_SESSION["userId"] = $row["user_id"];
+                $cookie = json_encode(array('username' => $user_username, 'userId' => $row['user_id']));
+
+                //86440 = 1 day
+                setcookie('infinite-springs', $cookie, time() + (86440 * 7), "/");
+
+                header("Location: /cs313-php/web/website/website.html");
+            } else {
+                echo("Error!: Password not verified");
+            }
+        } else {
+            echo("Error!: Row count greater than 1");
+        }
+    } else {
+        echo("Error!: Cannot execute");
+    }
 }
 catch (PDOException $ex) {
     echo 'Error!: ' . $ex->getMessage();
     die();
 }
-
-
-//make the database connection with the database environment variable
-// $db_conn = pg_connect(getenv("DATABASE_URL"));
-
-$user_username = $_POST["username"];
-$user_password = $_POST["password"];
-
-$user_username = stripslashes($user_username);
-$user_password = stripslashes($user_password);
-
-//query database for user information
-//TODO: add password matching
-$statement = "SELECT user_id, username, password_hash, date_created FROM users WHERE username='testing';";
-$data = null;
-if ($response = $db->query($statement)) {
-    if ($response->rowCount() > 0) {
-        //this is only for testing - we are only looking for one row
-        if ($response->rowCount() == 1) {
-            if ($response->columnCount() == 4) {
-                echo("Datbase query successful.<br>");
-                
-                //Only need the one row for now
-                $data = $response->fetchAll()[0];
-
-                // if ($data['password_hash'] == hash("sha256", $user_password)) {
-                //     echo("Passwords validated<br>");
-                // } else {
-                //     echo("Error - username or password incorrect.<br>");
-                //     exit;
-                // }
-            } else {
-                echo("Error in sql query - wrong number of columns returned: " . $response->columnCount() . "<br>");
-                print_r($response->errorInfo());
-                exit;
-            }
-        } else {
-            echo("Error in sql query - too many rows returned: " . $response->rowCount() . "<br>");
-        }
-    } else {
-        echo("Error in sql query - no data returned.<br>");
-        exit;
-    }
-}
-
-echo("Successfully logged in.<br>");
-$_SESSION["loggedIn"] = true;
-$_SESSION["username"] = $data['username'];
-$_SESSION["userId"] = $data['user_id'];
 ?>
-
-<html>
-    <head>
-        <style>
-            #resultTable {
-                border-collapse: collapse;
-                margin-top: 50px;
-            }
-
-            #resultTable tr * {
-                border: 1px solid black;
-                padding: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <table id="resultTable">
-            <tr>
-                <th>user_id</th>
-                <th>username</th>
-                <th>password_hash</th>
-                <th>date_created</th>
-            </tr>
-            <?php
-                echo ("<tr><td>".$data['user_id']."</td><td>".$data['username']."</td><td>".$data['password_hash']."</td><td>".$data['date_created']."</tr>");
-            ?>
-        </table>
-        <br>
-        <div>
-            <span>Click <a href="./../website.html">here</a> to return.</span>
-        </div>
-    </body>
-    <footer></footer>
-</html>

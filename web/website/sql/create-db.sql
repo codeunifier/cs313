@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS deck_color_lookup CASCADE;
 --create users table
 CREATE TABLE users (
     user_id serial PRIMARY KEY NOT NULL,
-    username VARCHAR(30) NOT NULL,
-    password_hash text NOT NULL,
+    username text NOT NULL UNIQUE,
+    password_hash text NOT NULL UNIQUE,
     date_created DATE NOT NULL,
     date_deleted DATE
 );
@@ -30,7 +30,7 @@ CREATE TABLE decks (
     deck_id serial PRIMARY KEY NOT NULL,
     deck_name VARCHAR(30),
     user_id int NOT NULL,
-    format_id int NOT NULL,
+    format_name text NOT NULL,
     date_created DATE NOT NULL,
     date_deleted DATE
 );
@@ -63,46 +63,12 @@ ADD FOREIGN KEY (color_id) REFERENCES colors(color_id);
 --insert rows into tables unaffected by users
 --colors table
 INSERT INTO colors (color_name)
-VALUES ('Red');
+VALUES ('White');
 INSERT INTO colors (color_name)
 VALUES ('Blue');
 INSERT INTO colors (color_name)
-VALUES ('White');
-INSERT INTO colors (color_name)
 VALUES ('Black');
 INSERT INTO colors (color_name)
+VALUES ('Red');
+INSERT INTO colors (color_name)
 VALUES ('Green');
-
-
---insert test user and test data
-
---insert testing user into database
-INSERT INTO users (username, password_hash, date_created)
-VALUES ('testing', '', now());
-
---testing user creates a Commander deck with Inalla as the Commander
-INSERT INTO decks (deck_name, user_id, format_id, date_created)
-VALUES ('Wizard EDH', 1, 3, now());
-INSERT INTO deck_color_lookup (deck_id, color_id)
-VALUES (1, 1);
-INSERT INTO deck_color_lookup (deck_id, color_id)
-VALUES (1, 2);
-INSERT INTO deck_color_lookup (deck_id, color_id)
-VALUES (1, 4);
---Inalla
-INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-VALUES (433279, 1, 1, now());
---Jace, Unraveler of Secrets
-INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-VALUES (409812, 1, 1, now());
---Kess, Dissident Mage
-INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-VALUES (433280, 1, 1, now());
---Apprentice Necromancer
-INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-VALUES (433029, 1, 1, now());
---Sea Gate Oracle
-INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-VALUES (433024, 1, 1, now());
-
-

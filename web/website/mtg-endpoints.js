@@ -38,6 +38,7 @@ var mtgApi = function () {
                     if (request.status === 404) {
                         deferred.resolve({ error: "Something" });
                     }
+                    console.log("Error: " + textStatus);
                 },
                 dataType: "json"
             });

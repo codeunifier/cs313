@@ -1,0 +1,95 @@
+#searchContainer {
+    width: 70%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#resultsText {
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#cardPlaceholder {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#resultsContainer {
+    height: 100%;
+}
+
+.card-result {
+    width: 100%;
+    height: 210px;
+}
+
+.card-result > * {
+    display: inline-block;
+}
+
+.card-image {
+    width: 150px;
+    height: 100%;
+    float: left;
+}
+
+.card-image img {
+    height: auto;
+    cursor: pointer;
+}
+
+.details-container {
+    padding-left: 15px;
+    height: 100%;
+    display: grid;
+    grid-template:
+        "name name cost" 30px
+        "type . set" 30px
+        "desc desc desc" 120px
+        "save . pwrtgh" 30px;
+}
+
+.card-name {
+    font-size: 22px;
+    grid-area: name;
+}
+
+.card-cost {
+    grid-area: cost;
+}
+
+.cost-container {
+    float: right;
+}
+
+.card-type {
+    grid-area: type;
+}
+
+.card-set {
+    grid-area: set;
+}
+
+.card-desc {
+    grid-area: desc;
+}
+
+.card-save {
+    grid-area: save;
+}
+
+.card-pwrtgh {
+    grid-area: pwrtgh;
+}
+
+.img-small {
+    width: 150px;
+    transition-duration: .3s;
+}
+
+.img-big {
+    width: 300px;
+    transition-duration: .3s;
+}

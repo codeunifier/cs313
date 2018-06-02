@@ -15,34 +15,26 @@
         <script type="text/javascript" src="mtg-endpoints.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
         <script type="text/javascript">
+            loadHeader().done(function(html) {
+                $("#headerPlaceholder").html(html);
+
+                $("#cardSearch").on("keyup", function (event) {
+                    if (event.key === "Enter") {
+                        $("#searchSubmit").click();
+                    }
+                });
+            });
+
             var mtg = new mtgApi();
 
-            mtg.searchCards("name=sea gate oracle&set=C17").done(function(results) {
+            mtg.searchCards("name=johnny").done(function(results) {
                 console.log(results);
             });
         </script>
     </head>
     <body>
         <header>
-            <div class="header-contents">
-                <div class="logo-container">
-                    <a href="website.html">
-                        <div class="header-image">
-                            <img src="images/spring.JPG">
-                        </div>
-                        <div class="header-text">
-                            <span>Infinite Springs</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="nav-bar-container">
-                    <ul>
-                        <li><a href="login/login.php">Login</a></li>
-                        <li><a href="saved-cards/saved-cards.php">Cards</a></li>
-                        <li><a href="decks/decks.php">Decks</a></li>
-                    </ul>
-                </div>
-            </div>
+            <div id="headerPlaceholder"></div>
         </header>
         <div class="body-container">
             <div class="title-text"><span>New 2017 Commanders!</span></div>

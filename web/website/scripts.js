@@ -41,3 +41,25 @@ function convertManaCostToSymbols(manaCost) {
 
     return html;
 }
+
+function loadHeader() {
+    var deferred = $.Deferred();
+
+    $.ajax({
+        type: "GET",
+        url: "/cs313-php/web/website/header.html",
+        data: "",
+        success: function (data) { 
+            if (data != null) {
+                deferred.resolve(data);
+            }
+        },
+        error: function(request, textStatus, errorThrown) { 
+            console.log("Error in loading header:");
+            console.log(textStatus);
+        },
+        dataType: "html"
+    });
+
+    return deferred.promise();
+}

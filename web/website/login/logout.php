@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    unset($_SESSION["loggedIn"]);
-    unset($_SESSION["username"]);
-    unset($_SESSION["userId"]);
+    //simply unsetting the cookie does not remove it.
+    unset($_COOKIE['infinite-springs']);
+    setcookie('infinite-springs', '', time() - 3600, '/');
 
-    header('Location: ./../website.html');
+    header('Location: /cs313-php/web/website/website.html');
 ?>

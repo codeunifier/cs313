@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION["loggedIn"])) {
-        //need to log in before saved cards can be viewed
-        header("Location: ./../login/login.php");
+    if (!isset($_COOKIE['infinite-springs'])) {
+        //need to log in before decks can be viewed
+        header("Location: /cs313-php/web/website/login/login.php");
         exit;
     }
 
@@ -30,7 +30,9 @@
         die();
     }
 
-    $statement = "SELECT deck_name, format_id FROM decks AS d JOIN users AS u ON u.user_id = d.user_id AND u.user_id = " . $_SESSION["userId"];
+    $cookie = json_decode($_COOKIE['infinite-springs'], true);
+
+    $statement = "SELECT deck_name, format_name FROM decks AS d JOIN users AS u ON u.user_id = d.user_id AND u.user_id = " . $cookie['userId'];
     $data = null;
     if ($response = $db->query($statement)) {
         if ($response->columnCount() == 2) {
@@ -40,6 +42,8 @@
             echo ("Error with sql query - wrong number of columns returned.");
             exit;
         }
+    } else {
+        echo("Error with sql query - could not query");
     }
 ?>
 <!DOCTYPE html>
@@ -47,50 +51,95 @@
     <head>
         <title>Decks</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="./../mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="./../style.css"> 
-        <link rel="stylesheet" href="deck-styles.css">
-        <script type="text/javascript" src="./../mtg-endpoints.js"></script>
-        <script type="text/javascript" src="./../scripts.js"></script>
-        <script>
-            window.onload = function () {
-                var mtg = new mtgApi();
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <link href="/cs313-php/web/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="/cs313-php/web/website/cookie.js"></script>
 
-                mtg.getFormats().done(function (response) {
-                    console.log(response);
+        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
+        <link rel="stylesheet" href="/cs313-php/web/website/decks/deck-styles.css">
+        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/cs313-php/web/website/decks/deck-scripts.js"></script>
+        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
+        <script>
+            loadHeader().done(function(html) {
+                $("#headerPlaceholder").html(html);
+            });
+
+            function loadFormats() {
+                var formats = [];
+                
+                getFormatData().done(function (formats) {
+                    formats.forEach(function (format) {
+                        $("#formatSelector").append("<option>" + format + "</option>");
+                    });
+                });
+            }
+
+            window.onload = function () {
+                $(".color").each(function (index) {
+                    var iconHTML = convertManaCostToSymbols($(this).attr('name'));
+                    $(this).html(iconHTML);
                 });
             }
         </script>
     </head>
     <body>
         <header>
-            <div class="header-contents">
-                <div class="logo-container">
-                    <a href="./../website.html">
-                        <div class="header-image">
-                            <img src="./../images/spring.JPG">
-                        </div>
-                        <div class="header-text">
-                            <span>Infinite Springs</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="nav-bar-container">
-                    <ul>
-                        <li><a href="./../login/login.php">Login</a></li>
-                        <li><a href="./../saved-cards/saved-cards.php">Cards</a></li>
-                        <li><a href="decks.php">Decks</a></li>
-                    </ul>
-                </div>
+            <div id="headerPlaceholder"></div>
+        </header>
+        <div id="decksMainContainer">
+            <div id="newDeckContainer">
+                <i id="btnNewDeck" class="fa fa-plus fa-lg" onclick="onNewDeckButtonClick()"></i>
             </div>
-            <div id="decksMainContainer">
-                <?php
+            <div id="newDeckInputsContainer">
+                <form id="newDeckForm" action="new-deck.php">
+                    <div id="nameContainer">
+                        <input type="text" name="name" placeholder="Deck name">
+                    </div>
+                    <div id="formatContainer">
+                        <span>Format: </span>
+                        <select id="formatSelector" name="format"></select>
+                    </div>
+                    <div id="colorsContainer">
+                        <div class="color-input">
+                            <div name="{W}" class="color"></div>
+                            <input type="checkbox" name="c_white">
+                        </div>
+                        <div class="color-input">
+                            <div name="{U}" class="color"></div>
+                            <input type="checkbox" name="c_blue">
+                        </div>
+                        <div class="color-input">
+                            <div name="{B}" class="color"></div>
+                            <input type="checkbox" name="c_black">
+                        </div>
+                        <div class="color-input">
+                            <div name="{R}" class="color"></div>
+                            <input type="checkbox" name="c_red">
+                        </div>
+                        <div class="color-input">
+                            <div name="{G}" class="color"></div>
+                            <input type="checkbox" name="c_green">
+                        </div>
+                    </div>
+                    <div id="submitContainer">
+                        <input type="submit" value="Create">
+                    </div>
+                </form>
+            </div>
+            <?php
+                if ($data != null) {
                     foreach ($data as $deck) {
                         echo("User " . $_SESSION["username"] . " has created " . count($data) . " decks:<br>");
-                        echo("Deck Name: " . $deck["deck_name"] . ", Format: " . $deck["format_id"]);
+                        echo("Deck Name: " . $deck["deck_name"] . ", Format: " . $deck["format_name"]);
                     }
-                ?>
-            </div>
-            <footer></footer>
-        </header>
+                } else {
+                    //no decks created
+                    echo ("<div id='noDecksContainer'><span>- No decks created for this user -</span></div>");
+                }
+            ?>
+            <br><br>
+            Feature not fully implemented.
+        </div>
+        <footer></footer>
 </html>

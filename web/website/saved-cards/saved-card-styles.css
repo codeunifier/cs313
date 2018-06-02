@@ -45,3 +45,13 @@ table td img {
 .text-visible {
     display: block;
 }
+
+#noCardsContainer {
+    width: 100%;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#noCardsContainer span {
+    color: grey;
+}

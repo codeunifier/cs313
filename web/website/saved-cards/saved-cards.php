@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION["loggedIn"])) {
-        //need to log in before saved cards can be viewed
-        header("Location: ./../login/login.php");
+    if (!isset($_COOKIE['infinite-springs'])) {
+        //need to log in before cards can be viewed
+        header("Location: /cs313-php/web/website/login/login.php");
         exit;
     }
 
@@ -30,10 +30,9 @@
         die();
     }
 
-    //query the database for user's card information
-    // $result = pg_query($db_conn, "SELECT * FROM multiverse_lookup");
+    $cookie = json_decode($_COOKIE['infinite-springs'], true);
 
-    $statement = "SELECT multiverse_id FROM multiverse_lookup AS ml JOIN users AS u ON u.user_id = ml.user_id AND u.user_id = " . (int)$_SESSION["userId"];
+    $statement = "SELECT multiverse_id FROM multiverse_lookup AS ml JOIN users AS u ON u.user_id = ml.user_id AND u.user_id = " . (int)$cookie["userId"];
     $data = null;
     if ($response = $db->query($statement)) {
         if ($response->columnCount() == 1) {
@@ -50,44 +49,34 @@
     <head>
         <title>Saved Cards</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link href="./../mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="./../style.css"> 
-        <link rel="stylesheet" href="saved-card-styles.css">
-        <script type="text/javascript" src="./../mtg-endpoints.js"></script>
-        <script type="text/javascript" src="./../scripts.js"></script>
-        <script type="text/javascript" src="saved-cards-scripts.js"></script>
+        <link href="/cs313-php/web/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/cs313-php/web/website/style.css"> 
+        <link rel="stylesheet" href="/cs313-php/web/website/saved-cards/saved-card-styles.css">
+        <script type="text/javascript" src="/cs313-php/web/website/mtg-endpoints.js"></script>
+        <script type="text/javascript" src="/cs313-php/web/website/scripts.js"></script>
+        <script type="text/javascript" src="/cs313-php/web/website/saved-cards/saved-cards-scripts.js"></script>
+        <script type="text/javascript">
+            loadHeader().done(function(html) {
+                $("#headerPlaceholder").html(html);
+            });
+        </script>
     </head>
     <body>
         <header>
-            <div class="header-contents">
-                <div class="logo-container">
-                    <a href="./../website.html">
-                        <div class="header-image">
-                            <img src="./../images/spring.JPG">
-                        </div>
-                        <div class="header-text">
-                            <span>Infinite Springs</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="nav-bar-container">
-                    <ul>
-                        <li><a href="./../login/login.php">Login</a></li>
-                        <li><a href="saved-cards.php">Cards</a></li>
-                        <li><a href="./../decks/decks.php">Decks</a></li>
-                    </ul>
-                </div>
-            </div>
+            <div id="headerPlaceholder"></div>
         </header>
         <div class="body-container">
-            <table>
-                <tr>
-                    <th>Card</th>
-                    <th>Name</th>
-                    <th>Mana Cost</th>
-                    <th>Card Text</th>
-                </tr>
-                <?php
+            <?php
+                if (count($data) > 0) {
+                    echo("<table>
+                            <tr>
+                                <th>Card</th>
+                                <th>Name</th>
+                                <th>Mana Cost</th>
+                                <th>Card Text</th>
+                            </tr>
+                          </table>");
+
                     foreach ($data as $row) {
                         $id = $row['multiverse_id'];
 
@@ -99,8 +88,12 @@
                         echo("<script>setCardData(" . $id . ");</script>");
                         echo("</tr>");
                     }
-                ?>
-            </table>
+                } else {
+                    echo("<div id='noCardsContainer'><span>- No cards saved by user -</span></div>");
+                }
+            ?>
+            <br><br>
+            Feature not yet implemented.
         </div>
         <footer></footer>
     </body>
