@@ -24,26 +24,21 @@
         }  
     
         $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $cookie = json_decode($_COOKIE['infinite-springs'], true);
+
+        $statement = "SELECT deck_name FROM decks AS d JOIN users AS u ON u.user_id = d.user_id AND u.user_id = " . $cookie['userId'];
+        
+        $data = null;
+        if ($response = $db->query($statement)) {
+            //Database query successful
+            $data = $response->fetchAll();
+        }
     }
     catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
-    }
-
-    $cookie = json_decode($_COOKIE['infinite-springs'], true);
-
-    $statement = "SELECT deck_name, format_name FROM decks AS d JOIN users AS u ON u.user_id = d.user_id AND u.user_id = " . $cookie['userId'];
-    $data = null;
-    if ($response = $db->query($statement)) {
-        if ($response->columnCount() == 2) {
-            //Database query successful
-            $data = $response->fetchAll();
-        } else {
-            echo ("Error with sql query - wrong number of columns returned.");
-            exit;
-        }
-    } else {
-        echo("Error with sql query - could not query");
     }
 ?>
 <!DOCTYPE html>
@@ -80,6 +75,14 @@
                     var iconHTML = convertManaCostToSymbols($(this).attr('name'));
                     $(this).html(iconHTML);
                 });
+
+                $("#submitContainer input").prop("disabled", true);
+
+                $(".color-input input").each(function (index) {
+                    $(this).change(function () {
+                        checkCreateDeckInputs();
+                    });
+                });
             }
         </script>
     </head>
@@ -92,9 +95,9 @@
                 <i id="btnNewDeck" class="fa fa-plus fa-lg" onclick="onNewDeckButtonClick()"></i>
             </div>
             <div id="newDeckInputsContainer">
-                <form id="newDeckForm" action="new-deck.php">
+                <form id="newDeckForm" action="new-deck.php" method="post">
                     <div id="nameContainer">
-                        <input type="text" name="name" placeholder="Deck name">
+                        <input type="text" name="name" placeholder="Deck name" onchange="checkCreateDeckInputs()">
                     </div>
                     <div id="formatContainer">
                         <span>Format: </span>
@@ -103,23 +106,23 @@
                     <div id="colorsContainer">
                         <div class="color-input">
                             <div name="{W}" class="color"></div>
-                            <input type="checkbox" name="c_white">
+                            <input type="checkbox" name="color[]" value="w">
                         </div>
                         <div class="color-input">
                             <div name="{U}" class="color"></div>
-                            <input type="checkbox" name="c_blue">
+                            <input type="checkbox" name="color[]" value="u">
                         </div>
                         <div class="color-input">
                             <div name="{B}" class="color"></div>
-                            <input type="checkbox" name="c_black">
+                            <input type="checkbox" name="color[]" value="b">
                         </div>
                         <div class="color-input">
                             <div name="{R}" class="color"></div>
-                            <input type="checkbox" name="c_red">
+                            <input type="checkbox" name="color[]" value="r">
                         </div>
                         <div class="color-input">
                             <div name="{G}" class="color"></div>
-                            <input type="checkbox" name="c_green">
+                            <input type="checkbox" name="color[]" value="g">
                         </div>
                     </div>
                     <div id="submitContainer">

@@ -32,18 +32,24 @@
 
         $password = password_hash($password, PASSWORD_BCRYPT);
 
-        $statement = "INSERT INTO users (username, password_hash, date_created) VALUES (?, ?, now());";
-        $db->prepare($statement)->execute([$username, $password]);
+        $insert = "INSERT INTO users (username, password_hash, date_created) VALUES (?, ?, now()) RETURNING user_id;";
+        $query = $db->prepare($insert);
+        
+        if ($query->execute([$username, $password])) {
+            $row = $query->fetch();
 
-        echo 'Query successful <br>';
+            $cookie = json_encode(array('username' => $username, 'userId' => $row['user_id']));
 
-        //TODO: have the user be logged in after creating new account
+            //86440 = 1 day
+            setcookie('infinite-springs', $cookie, time() + (86440 * 7), "/");
+
+            header("Location: /website/website.html");
+        }
     }
     catch (PDOException $ex) {
         $error = $ex->getMessage();
         if (strpos($error, 'Unique violation') !== false) {
             $_SESSION['duplicate'] = $username;
-            // echo ($error);
             header("Location: /website/login/new-account.php");
         }
         die();

@@ -55,7 +55,7 @@ header {
     float: left;
 }
 
-img {
+.header-image img {
     width: 80%;
     height: 80%;
     vertical-align: middle;
@@ -80,6 +80,11 @@ img {
     transform: scale(.8,.8);
     -ms-transform: scale(.8,.8);
     -webkit-transform: scale(.8,.8);
+}
+
+.display-card img {
+    width: 80%;
+    height: auto;
 }
 
 .nav-bar-container {
@@ -117,6 +122,16 @@ img {
     width: 100%;
 }
 
+#greeting {
+    height: 100px;
+    width: 100%;
+}
+
+.desc-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .title-text {
     margin-top: 15px;
 }
@@ -143,4 +158,26 @@ footer {
 
 .float-left {
     float: left;
+}
+
+.card-link {
+    cursor: pointer;
+}
+
+.card-img-small {
+    width: 150px;
+    transition-duration: .3s;
+}
+
+.card-img-big {
+    width: 300px;
+    transition-duration: .3s;
+}
+
+button {
+    cursor: pointer;
+}
+
+.search-container {
+    margin-left: 20px;
 }

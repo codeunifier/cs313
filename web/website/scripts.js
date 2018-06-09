@@ -29,14 +29,17 @@ function buildCardSearchURL(criteriaToBuild) {
 }
 
 function convertManaCostToSymbols(manaCost) {
-    //remove brackets
-    manaCost = manaCost.split("}").join("").split("{");
-    manaCost.shift();
-    
     var html = "";
 
-    for (var i = 0; i < manaCost.length; i++) {
-        html += "<i class=\"ms ms-cost ms-" + manaCost[i].toLowerCase() + "\"></i>";
+    //some cards won't have a mana cost
+    if (manaCost) {
+        // remove brackets
+        manaCost = manaCost.split("}").join("").split("{");
+        manaCost.shift();
+        
+        for (var i = 0; i < manaCost.length; i++) {
+            html += "<i class=\"ms ms-cost ms-" + manaCost[i].toLowerCase() + "\"></i>";
+        }
     }
 
     return html;
@@ -63,3 +66,22 @@ function loadHeader() {
 
     return deferred.promise();
 }
+
+function toggleResultsCardSize(e, multiverseId) {
+    console.log(e);
+    $(e).toggleClass("card-img-small card-img-big");
+    $("#cardText_" + multiverseId + " span").toggleClass("text-visible text-hidden");
+}
+
+var RARITY = {
+    "Common": "common",
+    "Uncommon": "uncommon",
+    "Rare": "rare",
+    "Mythic Rare": "mythic"
+}
+
+// function parseForManaSymbols(oldText) {
+//     var text = oldText;
+
+//     if (text.includes)
+// }

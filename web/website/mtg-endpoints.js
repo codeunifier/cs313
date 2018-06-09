@@ -27,7 +27,7 @@ var mtgApi = function () {
 
             $.ajax({
                 type: "GET",
-                url: "https://api.magicthegathering.io/v1/cards?" + criteria,
+                url: "https://api.magicthegathering.io/v1/cards?" + criteria + "&page=1&pageSize=99",
                 data: {},
                 success: function (data) { 
                     if (data != null) {

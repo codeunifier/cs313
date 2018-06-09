@@ -54,6 +54,9 @@ try {
             } else {
                 echo("Error!: Password not verified");
             }
+        } else if ($query->rowCount() == 0) {
+            $_SESSION['invalid-credentials'] = true;
+            header("Location: /website/login/login.php");
         } else {
             echo("Error!: Row count greater than 1");
         }

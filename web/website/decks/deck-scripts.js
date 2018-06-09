@@ -56,3 +56,19 @@ function getFormatData() {
 
     return deferred.promise();
 }
+
+function checkCreateDeckInputs() {
+    var checkboxEnabled = false;
+
+    $(".color-input input").each(function() {
+        if($(this).is(":checked")) {
+            checkboxEnabled = true;
+        }
+    });
+
+    setCreateButtonDisable(!checkboxEnabled || $("#nameContainer input").val() == "");
+}
+
+function setCreateButtonDisable(shouldDisable) {
+    $("#submitContainer input").prop("disabled", shouldDisable);
+}

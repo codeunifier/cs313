@@ -1,13 +1,11 @@
 <?php
     session_start();
 
-    $loggedIn;
-
-    if (isset($_SESSION["loggedIn"])) {
-        $loggedIn = true;
+    if (isset($_POST["search"])) {
+        $searchText = $_POST["search"];
+    } else {
+        $searchText = "";
     }
-
-    $searchText = $_POST["search"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +13,7 @@
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link href="/website/mtg-icons/css/mana.css" rel="stylesheet" type="text/css" />
+        <link href="/website/mtg-set-icons/css/keyrune.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="/website/style.css"> 
         <script type="text/javascript" src="/website/mtg-endpoints.js"></script>
         <script type="text/javascript" src="/website/scripts.js"></script>
@@ -32,6 +31,7 @@
                     $("#cardPlaceholder").html("No cards found from search: <?php echo($searchText); ?>");
                 } else {
                     loadSearchResults(results.cards);
+                    createSaveButtons(results.cards);
                 }
             });
         </script>
@@ -42,12 +42,12 @@
         </header>
         <template id="cardTemplate">
             <div class="card-result">
-                <div class="card-image"><img class='img-small' src=""></div>
+                <div class="card-image"><img class='card-img-small' src=""></div>
                 <div class="details-container">
                     <div class="card-name"></div>
                     <div class="card-cost"><div class="cost-container"></div></div>
                     <div class="card-type"></div>
-                    <div class="card-set"></div>
+                    <div class="card-set"><span class='card-set-name'></span><i class='ss ss-grad ss-onehalfx'></i></div>
                     <div class="card-desc"></div>
                     <div class="card-save"></div>
                     <div class="card-pwrtgh"></div>

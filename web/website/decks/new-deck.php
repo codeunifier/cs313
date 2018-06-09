@@ -26,6 +26,13 @@
         $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        $name = $_POST["name"];
+        $format = $_POST["format"];
+        $colors = $_POST["color"];
+
+        echo ($name . "<br>" . $format . "<br>");
+        print_r($colors);
+
         // $statement = "INSERT INTO users (username, password_hash, date_created) VALUES (?, ?, now());";
         // $db->prepare($statement)->execute([$username, $password]);
 
@@ -37,5 +44,5 @@
         die();
     }
 
-    header("Location: /website/decks/decks.php");
+    // header("Location: /website/decks/decks.php");
 ?>

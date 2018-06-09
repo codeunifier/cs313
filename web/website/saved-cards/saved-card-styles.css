@@ -24,20 +24,6 @@ table td img {
     float: right;
 }
 
-.card-link {
-    cursor: pointer;
-}
-
-.img-small {
-    width: 150px;
-    transition-duration: .3s;
-}
-
-.img-big {
-    width: 300px;
-    transition-duration: .3s;
-}
-
 .text-hidden {
     display: none;
 }

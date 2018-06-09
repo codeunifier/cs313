@@ -38,7 +38,8 @@ CREATE TABLE decks (
 --create colors table
 CREATE TABLE colors (
     color_id serial PRIMARY KEY NOT NULL,
-    color_name VARCHAR(10) NOT NULL
+    color_name VARCHAR(10) NOT NULL,
+    mtg_selector VARCHAR(3) NOT NULL
 );
 
 --create deck color lookup table
@@ -62,13 +63,13 @@ ADD FOREIGN KEY (color_id) REFERENCES colors(color_id);
 
 --insert rows into tables unaffected by users
 --colors table
-INSERT INTO colors (color_name)
-VALUES ('White');
-INSERT INTO colors (color_name)
-VALUES ('Blue');
-INSERT INTO colors (color_name)
-VALUES ('Black');
-INSERT INTO colors (color_name)
-VALUES ('Red');
-INSERT INTO colors (color_name)
-VALUES ('Green');
+INSERT INTO colors (color_name, mtg_selector)
+VALUES ('White', '{W}');
+INSERT INTO colors (color_name, mtg_selector)
+VALUES ('Blue', '{U}');
+INSERT INTO colors (color_name, mtg_selector)
+VALUES ('Black', '{B}');
+INSERT INTO colors (color_name, mtg_selector)
+VALUES ('Red', '{R}');
+INSERT INTO colors (color_name, mtg_selector)
+VALUES ('Green', '{G}');

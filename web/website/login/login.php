@@ -25,6 +25,15 @@
             loadHeader().done(function(html) {
                 $("#headerPlaceholder").html(html);
             });
+
+            window.onload = function () {
+                <?php
+                    if (isset($_SESSION['invalid-credentials'])) {
+                        unset($_SESSION['invalid-credentials']);
+                        echo("$('#invalidCredentials').show();");
+                    }
+                ?>
+            }
         </script>
     </head>
     <body>
@@ -36,6 +45,7 @@
                 <div id="imageContainer"><img src="/website/images/johnny.jpg"></div>
                 <form id="loginForm" method="post" action="login-check.php">
                     <span id="formHeader">Log In</span>
+                    <div id="invalidCredentials"><span>Incorrect username or password</span></div>
                     <input type="text" name="username" value="" placeholder="Username" class="login-input" required>
                     <input type="password" name="password" value="" placeholder="Password" class="login-input" required>
                     <input type="submit" value="Log In" class="login-input">

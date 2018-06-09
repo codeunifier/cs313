@@ -8,9 +8,16 @@
             
             https://andrewgioia.github.io/Mana/icons.html 
 
+
+            Icons and images for set symbols are © Wizards of the Coast
+            "Magic: The Gathering Set Symbol Font" created by Andrew Gioia
+
+            https://andrewgioia.github.io/Keyrune/index.html
+
         -->
         <title>Infinite Springs</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="cookie.js"></script>
         <link rel="stylesheet" href="style.css"> 
         <script type="text/javascript" src="mtg-endpoints.js"></script>
         <script type="text/javascript" src="scripts.js"></script>
@@ -25,11 +32,9 @@
                 });
             });
 
-            var mtg = new mtgApi();
-
-            mtg.searchCards("name=johnny").done(function(results) {
-                console.log(results);
-            });
+            window.onload = function () {
+                
+            }
         </script>
     </head>
     <body>
@@ -37,12 +42,20 @@
             <div id="headerPlaceholder"></div>
         </header>
         <div class="body-container">
-            <div class="title-text"><span>New 2017 Commanders!</span></div>
-            <div id="cardDisplayContainer">
-                <div id="card1" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433276&type=card"></div>
-                <div id="card2" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433289&type=card"></div>
-                <div id="card3" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433279&type=card"></div>
-                <div id="card4" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433277&type=card"></div>
+            <div id="greeting">
+                <div class="title-text"><span>Welcome to Infinite Springs!</span></div>
+                <div class="desc-text">Welcome, Planeswalkers! Search through the vast resources of the multiverse
+                    to build 
+                </div>
+            </div>
+            <div id="announcements">
+                <div class="title-text"><span>New 2017 Commanders!</span></div>
+                <div id="cardDisplayContainer">
+                    <div id="card1" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433276&type=card"></div>
+                    <div id="card2" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433289&type=card"></div>
+                    <div id="card3" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433279&type=card"></div>
+                    <div id="card4" class="display-card"><img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=433277&type=card"></div>
+                </div>
             </div>
         </div>
         <footer></footer>

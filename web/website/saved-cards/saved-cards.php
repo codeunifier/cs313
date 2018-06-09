@@ -24,24 +24,25 @@
         }  
     
         $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $cookie = json_decode($_COOKIE['infinite-springs'], true);
+
+        $statement = "SELECT multiverse_id FROM multiverse_lookup AS ml JOIN users AS u ON u.user_id = ml.user_id AND u.user_id = " . (int)$cookie["userId"];
+        $data = null;
+        if ($response = $db->query($statement)) {
+            if ($response->columnCount() == 1) {
+                //Database query successful
+                $data = $response->fetchAll();
+            } else {
+                echo ("Error with sql query - wrong number of columns returned.");
+                exit;
+            }
+        }
     }
     catch (PDOException $ex) {
         echo 'Error!: ' . $ex->getMessage();
         die();
-    }
-
-    $cookie = json_decode($_COOKIE['infinite-springs'], true);
-
-    $statement = "SELECT multiverse_id FROM multiverse_lookup AS ml JOIN users AS u ON u.user_id = ml.user_id AND u.user_id = " . (int)$cookie["userId"];
-    $data = null;
-    if ($response = $db->query($statement)) {
-        if ($response->columnCount() == 1) {
-            //Database query successful
-            $data = $response->fetchAll();
-        } else {
-            echo ("Error with sql query - wrong number of columns returned.");
-            exit;
-        }
     }
 ?>
 <!DOCTYPE html>
@@ -74,8 +75,7 @@
                                 <th>Name</th>
                                 <th>Mana Cost</th>
                                 <th>Card Text</th>
-                            </tr>
-                          </table>");
+                            </tr>");
 
                     foreach ($data as $row) {
                         $id = $row['multiverse_id'];
@@ -88,12 +88,12 @@
                         echo("<script>setCardData(" . $id . ");</script>");
                         echo("</tr>");
                     }
+
+                    echo("</table>");
                 } else {
                     echo("<div id='noCardsContainer'><span>- No cards saved by user -</span></div>");
                 }
             ?>
-            <br><br>
-            Feature not yet implemented.
         </div>
         <footer></footer>
     </body>

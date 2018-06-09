@@ -84,3 +84,14 @@
     width: auto;
     height: 200px;
 }
+
+#invalidCredentials {
+    display: none;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+}
+
+#invalidCredentials span {
+    color: red;
+}
