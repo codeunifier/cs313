@@ -39,7 +39,7 @@
             }
 
             $statement = "INSERT INTO multiverse_lookup (multiverse_id, user_id, deck_id, date_created)
-                        SELECT 433276, 1, ";
+                        SELECT " . $multiverseId . ", " . $userId . ", ";
             
             if ($deckId) {
                 $statement = $statement . "," . $deckId;
@@ -47,7 +47,7 @@
                 $statement = $statement . "NULL";
             }
             
-            $statement = $statement . ", now() WHERE NOT EXISTS (SELECT * FROM multiverse_lookup WHERE multiverse_id = 433276 AND user_id = 1)";
+            $statement = $statement . ", now() WHERE NOT EXISTS (SELECT * FROM multiverse_lookup WHERE multiverse_id = " . $multiverseId . " AND user_id = " . $userId . ")";
             
             if ($response = $db->query($statement)) {
                 if ($response->rowCount() > 0) {
